@@ -1,4 +1,5 @@
-﻿using WebAPI.DataContext;
+﻿using Microsoft.EntityFrameworkCore;
+using WebAPI.DataContext;
 using WebAPI.Models;
 
 namespace WebAPI.Service.FuncionarioService
@@ -104,7 +105,7 @@ namespace WebAPI.Service.FuncionarioService
 
             try
             {
-                FuncionarioModel funcionario = _context.Funcionarios.FirstOrDefault(x => x.Id == editadoFuncionario.Id);
+                FuncionarioModel funcionario = _context.Funcionarios.AsNoTracking().FirstOrDefault(x => x.Id == editadoFuncionario.Id);
                 if(funcionario == null)
                 {
                     serviceResponse.Dados = null;
